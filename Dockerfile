@@ -20,19 +20,10 @@ RUN pip install numba==0.23.1
 
 RUN apt-get install -y wget
 
-RUN mkdir /build
-WORKDIR /build
-RUN git clone https://bitbucket.org/pysph/pysph.git
-WORKDIR /build/pysph
-RUN git checkout 1a641d1d3ebd9b5a7fca170d952f5311389d2b78
-ENV ZOLTAN=/build/zoltan
-RUN ./build_zoltan.sh $ZOLTAN
-RUN python setup.py install
-
 WORKDIR /build
 RUN git clone https://github.com/badlands-model/pyBadlands.git
 WORKDIR /build/pyBadlands/pyBadlands
-RUN git checkout 6caa8cb5316e71df7cc199c2cc9bc0c9f067ac17
+RUN git checkout 6ce19a1c1522b05863142c870c8b074614171d68
 WORKDIR /build/pyBadlands/pyBadlands/libUtils
 RUN make
 RUN pip install -e /build/pyBadlands
