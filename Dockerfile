@@ -23,7 +23,7 @@ RUN apt-get install -y wget
 WORKDIR /build
 RUN git clone https://github.com/badlands-model/pyBadlands.git
 WORKDIR /build/pyBadlands/pyBadlands
-RUN git checkout 6ce19a1c1522b05863142c870c8b074614171d68
+RUN git checkout 2c1f789d9fcf39ac80873552fb1fb4dde0f14e57
 WORKDIR /build/pyBadlands/pyBadlands/libUtils
 RUN make
 RUN pip install -e /build/pyBadlands
