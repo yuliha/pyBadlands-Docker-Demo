@@ -9,6 +9,8 @@ WORKDIR /build/pyBadlands/pyBadlands/libUtils
 RUN make
 RUN pip install -e /build/pyBadlands
 
+RUN pip install git+https://github.com/badlands-model/pyBadlands-Companion.git
+
 WORKDIR /build
 ENV TINI_VERSION v0.8.4
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/local/bin/tini
