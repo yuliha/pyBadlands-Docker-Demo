@@ -20,7 +20,7 @@ RUN mkdir /workspace && \
     mkdir /workspace/volume
 
 # Copy test files to workspace
-RUN cp -av /build/pyBadlands/test/* /workspace/
+RUN cp -av /build/pyBadlands/Examples/* /workspace/
 
 # setup space for working in
 VOLUME /workspace/volume
