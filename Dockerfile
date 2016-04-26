@@ -3,12 +3,7 @@ FROM badlandsmodel/pybadlands-dependencies
 
 MAINTAINER Ian Howson
 
-WORKDIR /build
-RUN git clone https://github.com/badlands-model/pyBadlands.git
-WORKDIR /build/pyBadlands/pyBadlands/libUtils
-RUN make
-RUN pip install -e /build/pyBadlands
-
+RUN pip install git+https://github.com/badlands-model/pyBadlands.git
 RUN pip install git+https://github.com/badlands-model/pyBadlands-Companion.git
 
 WORKDIR /build
@@ -37,6 +32,5 @@ WORKDIR /workspace
 EXPOSE 8888
 ENTRYPOINT ["/usr/local/bin/tini", "--"]
 
-ENV LD_LIBRARY_PATH=/build/pyBadlands/pyBadlands/libUtils
 CMD /build/run.sh
 
