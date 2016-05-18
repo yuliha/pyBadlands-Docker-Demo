@@ -9,9 +9,10 @@ WORKDIR /build/pyBadlands/pyBadlands/libUtils
 RUN make
 RUN pip install -e /build/pyBadlands
 
-RUN pip install git+https://github.com/badlands-model/pyBadlands-Companion.git
-
 WORKDIR /build
+RUN git clone https://github.com/badlands-model/pyBadlands-Companion.git
+RUN pip install -e /build/pyBadlands-Companion
+
 ENV TINI_VERSION v0.8.4
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/local/bin/tini
 RUN chmod +x /usr/local/bin/tini
@@ -21,10 +22,12 @@ RUN mkdir /root/.ipython
 COPY profile_mpi /root/.ipython/profile_mpi
 
 RUN mkdir /workspace && \
-    mkdir /workspace/volume
+    mkdir /workspace/volume && \
+    mkdir /workspace/companion
 
 # Copy test files to workspace
 RUN cp -av /build/pyBadlands/Examples/* /workspace/
+RUN cp -av /build/pyBadlands-Companion/notebooks/* /workspace/companion/
 
 COPY run.sh /build
 RUN chmod +x /build/run.sh
